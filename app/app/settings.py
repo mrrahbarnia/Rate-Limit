@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 LOCAL_APPS = [
+    'ratelimit.apps.RatelimitConfig'
 ]
 
 THIRD_PARTY_APP = [
@@ -57,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'ratelimit.middleware.RateLimiterMiddleware',
 ]
 
 ROOT_URLCONF = 'app.urls'
@@ -140,6 +142,10 @@ REST_FRAMEWORK = {
 # Redis config
 REDIS_HOST = 'redis'
 REDIS_PORT = 6379
+
+# Login rate limit config
+LOGIN_RATE_LIMIT = 5
+LOGIN_SAMPLING_PERIOD = 20
 
 # Logging config
 LOGGING = {
